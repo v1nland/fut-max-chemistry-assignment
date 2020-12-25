@@ -25,7 +25,7 @@ class Position:
       "ST": ["CF"],
     }
 
-    return related_positions[self.natural_position]
+    return related_positions[self.name]
 
   def get_unrelated_positions(self):
     unrelated_positions = {
@@ -48,4 +48,4 @@ class Position:
       "ST": ["RF", "LF"],
     }
 
-    return unrelated_positions[self.natural_position]
+    return unrelated_positions[self.name]

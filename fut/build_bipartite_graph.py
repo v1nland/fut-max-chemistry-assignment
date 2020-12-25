@@ -1,6 +1,5 @@
 import numpy
 
-
 def build_bipartite_graph(players, squad):
     graph = []
 
