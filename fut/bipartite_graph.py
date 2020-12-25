@@ -29,21 +29,19 @@ squad_433 = [
 # players are based on input
 # should connect to a rest api
 # or scrap based on ID
-# fmt: off
 players = [
-	Player("Claudio Bravo", "Chile", "Liga BBVA", "Real Betis", Position("GK")),
-    Player("Mauricio Isla", "Chile", "Liga do Brasil", "Flamengo", Position("RB")),
-	Player("Paulo Diaz", "Chile", "Primera division de Argentina", "River Plate", Position("RB")),
+  Player("Mauricio Isla", "Chile", "Liga do Brasil", "Flamengo", Position("CB")),
+	Player("Paulo Diaz", "Chile", "Primera division de Argentina", "River Plate", Position("CB")),
 	Player("Francisco Sierralta", "Chile", "Premier League", "Watford", Position("CB")),
 	Player("Jean Beausejour", "Chile", "Primera division de Chile", "U. de Chile", Position("LB")),
-	Player("Erick Pulgar", "Chile", "Serie A", "Fiorentina", Position("CM")),
-	Player("Arturo Vidal", "Chile", "Serie A", "Inter de Milan", Position("CM")),
+	Player("Erick Pulgar", "Chile", "Serie A", "Fiorentina", Position("CDM")),
+	Player("Arturo Vidal", "Chile", "Serie A", "Inter de Milan", Position("CAM")),
 	Player("Cesar Pinares", "Chile", "Liga do Brasil", "Gremio", Position("CAM")),
-	Player("Fabian Orellana", "Chile", "Liga BBVA", "Real Valladolid", Position("RW")),
+	Player("Fabian Orellana", "Chile", "Liga BBVA", "Real Valladolid", Position("RF")),
 	Player("Felipe Mora", "Chile", "MLS", "Portland Timbers", Position("ST")),
-	Player("Alexis Sanchez", "Chile", "Serie A", "Inter de Milan", Position("ST")),
+	Player("Alexis Sanchez", "Chile", "Serie A", "Inter de Milan", Position("CF")),
+  Player("Claudio Bravo", "Chile", "Liga BBVA", "Real Betis", Position("GK")),
 ]
-# fmt: on
 
 # our graph, built from both arrays
 graph = build_bipartite_graph(players, squad_433)
