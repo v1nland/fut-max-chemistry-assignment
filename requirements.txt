@@ -1,1 +1,4 @@
 numpy
+pygresql
+PyInquirer
+future

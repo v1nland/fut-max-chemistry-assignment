@@ -29,26 +29,34 @@ class Player:
       return 3
   
   def eval_chemistry_for_squad(self, squad_position, neighbor_players):
-    # calculate L factor
     sum_links_value = 0.0
 
     for p in neighbor_players:
-      if self.nationality == p["player"].nationality and self.league == p["player"].league and self.club == p["player"].club:
+      current_neighbor = p["player"]
+
+      if self.nationality == current_neighbor.nationality and self.league == current_neighbor.league and self.club == current_neighbor.club:
         sum_links_value = sum_links_value + 3
-      elif self.nationality == p["player"].nationality and self.league == p["player"].league and self.club != p["player"].club:
+      elif self.nationality == current_neighbor.nationality and self.league == current_neighbor.league and self.club != current_neighbor.club:
         sum_links_value = sum_links_value + 2
-      elif self.nationality != p["player"].nationality and self.league == p["player"].league and self.club == p["player"].club:
+      elif self.nationality != current_neighbor.nationality and self.league == current_neighbor.league and self.club == current_neighbor.club:
         sum_links_value = sum_links_value + 2
-      elif self.nationality != p["player"].nationality and self.league == p["player"].league and self.club != p["player"].club:
+      elif self.nationality != current_neighbor.nationality and self.league == current_neighbor.league and self.club != current_neighbor.club:
         sum_links_value = sum_links_value + 1
-      elif self.nationality == p["player"].nationality and self.league != p["player"].league and self.club != p["player"].club:
+      elif self.nationality == current_neighbor.nationality and self.league != current_neighbor.league and self.club != current_neighbor.club:
         sum_links_value = sum_links_value + 1
-      elif self.nationality != p["player"].nationality and self.league != p["player"].league and self.club != p["player"].club:
+      elif self.nationality != current_neighbor.nationality and self.league != current_neighbor.league and self.club != current_neighbor.club:
         sum_links_value = sum_links_value + 0
 
+    # calculate L factor
     l_factor = sum_links_value/len(neighbor_players)
 
-    if self.position_in_squad(squad_position) == "natural":
+    # eval chemistry based on l factor
+    return self.chemistry_from_l(l_factor, squad_position)
+  
+  def chemistry_from_l(self, l_factor, squad_position):
+    position_in_squad = self.position_in_squad(squad_position)
+
+    if position_in_squad == "natural":
       if l_factor < 0.3:
         return 3
       elif l_factor >= 0.3 and l_factor < 1.0:
@@ -57,7 +65,7 @@ class Player:
         return 9
       elif l_factor >= 1.6:
         return 10
-    elif self.position_in_squad(squad_position) == "related":
+    elif position_in_squad == "related":
       if l_factor < 0.3:
         return 2
       elif l_factor >= 0.3 and l_factor < 1.0:
@@ -66,7 +74,7 @@ class Player:
         return 8
       elif l_factor >= 1.6:
         return 9
-    elif self.position_in_squad(squad_position) == "unrelated":
+    elif position_in_squad == "unrelated":
       if l_factor < 0.3:
         return 1
       elif l_factor >= 0.3 and l_factor < 1.0:
@@ -75,7 +83,7 @@ class Player:
         return 5
       elif l_factor >= 1.6:
         return 5
-    elif self.position_in_squad(squad_position) == "wrong":
+    elif position_in_squad == "wrong":
       if l_factor < 0.3:
         return 0
       elif l_factor >= 0.3 and l_factor < 1.0:

@@ -6,46 +6,49 @@ class Position:
 
   def get_related_positions(self):
     related_positions = {
-      "GK": [],
-      "RB": ["RWB"],
-      "CB": [],
-      "LB": ["LWB"],
-      "RWB": ["RB"],
-      "LWB": ["LB"],
-      "CDM": ["CM"],
-      "CM": ["CDM", "CAM"],
-      "CAM": ["CM"],
-      "RM": ["RW"],
-      "LM": ["LW"],
-      "RW": ["RM", "RF"],
-      "LW": ["LM", "LF"],
-      "CF": ["CAM", "ST"],
-      "RF": ["RW"],
-      "LF": ["LW"],
-      "ST": ["CF"],
+      "gk": [],
+      "rb": ["rwb"],
+      "cb": [],
+      "lb": ["lwb"],
+      "rwb": ["rb"],
+      "lwb": ["lb"],
+      "cdm": ["cm"],
+      "cm": ["cdm", "cam"],
+      "cam": ["cm"],
+      "rm": ["rw"],
+      "lm": ["lw"],
+      "rw": ["rm", "rf"],
+      "lw": ["lm", "lf"],
+      "cf": ["cam", "st"],
+      "rf": ["rw"],
+      "lf": ["lw"],
+      "st": ["cf"],
     }
 
     return related_positions[self.name]
 
   def get_unrelated_positions(self):
     unrelated_positions = {
-      "GK": [],
-      "RB": ["CB", "LB", "RM"],
-      "CB": ["RB", "LB", "CDM"],
-      "LB": ["CB", "RB", "LM"],
-      "RWB": ["LWB", "RM", "RW"],
-      "LWB": ["RWB", "LM", "LW"],
-      "CDM": ["CB", "CAM"],
-      "CM": ["RM", "LM"],
-      "CAM": ["CDM"],
-      "RM": ["RB", "RWB", "CM", "LM", "RF"],
-      "LM": ["LB", "LWB", "CM", "RM", "LF"],
-      "RW": ["RWB", "LW"],
-      "LW": ["LWB", "RW"],
-      "CF": ["RF", "LF"],
-      "RF": ["CF", "LF", "ST"],
-      "LF": ["CF", "RF", "ST"],
-      "ST": ["RF", "LF"],
+      "gk": [],
+      "rb": ["cb", "lb", "rm"],
+      "cb": ["rb", "lb", "cdm"],
+      "lb": ["cb", "rb", "lm"],
+      "rwb": ["lwb", "rm", "rw"],
+      "lwb": ["rwb", "lm", "lw"],
+      "cdm": ["cb", "cam"],
+      "cm": ["rm", "lm"],
+      "cam": ["cdm"],
+      "rm": ["rb", "rwb", "cm", "lm", "rf"],
+      "lm": ["lb", "lwb", "cm", "rm", "lf"],
+      "rw": ["rwb", "lw"],
+      "lw": ["lwb", "rw"],
+      "cf": ["rf", "lf"],
+      "rf": ["cf", "lf", "st"],
+      "lf": ["cf", "rf", "st"],
+      "st": ["rf", "lf"],
     }
 
     return unrelated_positions[self.name]
+
+  def to_string(self):
+    print(self.name, self.related_positions, self.unrelated_positions)
