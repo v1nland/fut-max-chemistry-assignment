@@ -21,7 +21,7 @@
 #include "Python.h"
 #include "numpy/arrayobject.h"
 
-/*************** CONstANTS  *******************/
+/*************** CONSTANTS  *******************/
 
   #define BIG 100000
 
@@ -32,7 +32,7 @@
   typedef npy_int col;
   #define COL_TYPE NPY_INT
   typedef npy_double cost;
-  #define COst_TYPE NPY_DOUBLE
+  #define COST_TYPE NPY_DOUBLE
 
 /*************** FUNCTIONS  *******************/
 

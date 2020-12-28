@@ -8,9 +8,10 @@ from position import Position
 
 # functions
 from db import get_players_from_input
-from max_bipartite_matching import get_initial_squad
-from squads_list import get_squad_options, get_squad, build_squad_relations
+from squads import get_squad_options, get_squad, build_squad_relations, eval_squad_chemistry
+from run_algorithm import run_algorithm
 
+# cli questions
 questions = [
     {
         'type': 'list',
@@ -144,7 +145,7 @@ questions = [
 # read user answers
 answers = prompt(questions)
 
-# get squad from repo
+# get squad from squad list
 squad = get_squad(answers["squad"])
 
 # build players array
@@ -162,32 +163,4 @@ players = [
   answers["picked_player_11"],
 ]
 
-# squad = get_squad("433")
-
-# players = [
-#   Player("Claudio Bravo", "Chile", "Liga BBVA", "Real Betis", Position("gk")),
-#   Player("Francisco Sierralta", "Chile", "Premier League", "Watford", Position("rb")),
-#   Player("Guillermo Maripan", "Chile", "Ligue 1", "Monaco", Position("cb")),
-# 	Player("Paulo Diaz", "Chile", "Primera division de Argentina", "River Plate", Position("cb")),
-# 	Player("Lionel Messi", "Argentina", "Liga BBVA", "Barcelona", Position("rw")),
-# 	Player("Erick Pulgar", "Chile", "Serie A", "Fiorentina", Position("cm")),
-# 	Player("Arturo Vidal", "Chile", "Serie A", "Inter de Milan", Position("cm")),
-# 	Player("Cesar Pinares", "Chile", "Primera division de Chile", "U. Catolica", Position("cam")),
-# 	Player("Fabian Orellana", "Chile", "Liga BBVA", "Real Valladolid", Position("rw")),
-# 	Player("Felipe Mora", "Chile", "MLS", "Portland Timbers", Position("st")),
-# 	Player("Alexis Sanchez", "Chile", "Serie A", "Inter de Milan", Position("lw")),
-# ]
-
-# get starting squad from max assignment
-starting_squad = get_initial_squad(squad["positions"], players)
-
-# build squad relations
-squad_relations = build_squad_relations(squad, starting_squad)
-
-for elem in squad_relations:
-  player = elem["player"]
-  position = elem["position"]
-  relations = elem["relations"]
-
-  player_chemistry = player.eval_chemistry_for_squad(position, relations)
-  print(player.name, position.name, player_chemistry)
+run_algorithm(squad, players)

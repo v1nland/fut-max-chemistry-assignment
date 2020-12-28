@@ -93,5 +93,5 @@ class Player:
       elif l_factor >= 1.6:
         return 2
 
-  def to_string(self):
-    print(self.name, self.natural_position.name, self.nationality, self.league, self.club)
+  def __str__(self):
+    return """name: {}, natural_position: {}, nationality: {}, league: {}, club: {}""".format(self.name, self.natural_position, self.nationality, self.league, self.club)

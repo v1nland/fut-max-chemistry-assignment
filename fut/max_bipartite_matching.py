@@ -8,13 +8,15 @@ from position import Position
 
 # functions
 from build_bipartite_graph import build_bipartite_graph
-from squads_list import get_squad
+from squads import get_squad
 
-def get_initial_squad(squad, players):
+def get_initial_player_distribution(squad, players):
   # our graph, built from both arrays
   graph = build_bipartite_graph(players, squad)
 
-  # compute maximum-weighted-bipartite-matching
+  print ( graph )
+
+  # compute maximum weighted bipartite matching
   result = LAPJV.lap(graph)[2]
 
   # return final squad

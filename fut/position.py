@@ -50,5 +50,5 @@ class Position:
 
     return unrelated_positions[self.name]
 
-  def to_string(self):
-    print(self.name, self.related_positions, self.unrelated_positions)
+  def __str__(self):
+    return """{}""".format(self.name)

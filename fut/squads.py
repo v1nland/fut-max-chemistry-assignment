@@ -909,19 +909,34 @@ def get_squad(squad_name):
 
   return None
 
-def build_squad_relations(squad, starting_squad):
+def build_squad_relations(squad, players):
   built = []
   relations = squad["relations"]
   positions = squad["positions"]
 
   for i in range(len(relations)):
-    built.append({ "position": positions[i], "player": starting_squad[i], "relations": [] })
+    built.append({ "position": positions[i], "player": players[i], "relations": [] })
 
     for j in range(len(relations[i])):
       if relations[i][j] == 1:
-        built[i]["relations"].append({ "player": starting_squad[j], "position": positions[j] })
+        built[i]["relations"].append({ "player": players[j], "position": positions[j] })
 
   return built
 
 def get_squad_options(answers):
   return [squad["name"] for squad in all_squads]
+
+def eval_squad_chemistry(squad_relations):
+  player_distribution = []
+  total_chemistry = 0
+  
+  for elem in squad_relations:
+    player = elem["player"]
+    position = elem["position"]
+    relations = elem["relations"]
+
+    player_chemistry = player.eval_chemistry_for_squad(position, relations)
+    total_chemistry = total_chemistry + player_chemistry
+    player_distribution.append({ "player": player, "position_in_squad": position, "chemistry": player_chemistry })
+
+  return {"distribution": player_distribution, "team_chemistry": total_chemistry}
